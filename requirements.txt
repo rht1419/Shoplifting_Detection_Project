@@ -1,0 +1,11 @@
+opencv-python>=4.10,<5
+PyYAML>=6.0,<7
+pytest>=8.0,<9
+ultralytics>=8.3,<9
+psutil>=6.0,<8
+torch>=2.0.0
+scikit-learn>=1.3.0
+pandas>=2.0.0
+lapx>=0.5.5
+
+

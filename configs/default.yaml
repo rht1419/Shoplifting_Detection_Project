@@ -1,0 +1,42 @@
+video:
+  target_fps: 15.0
+  resize_width: 640
+  resize_height: 360
+  supported_extensions:
+    - .mp4
+    - .avi
+    - .mov
+    - .mkv
+
+data:
+  raw_root: data
+  manifest_path: data/manifests/clips.csv
+
+pose_tracking:
+  model_path: yolov8n-pose.pt
+  device: "cpu" # Default to cpu; override with --device 0 if CUDA GPU is available
+  confidence: 0.35
+  iou_threshold: 0.5
+  image_size: 640
+  tracker: bytetrack.yaml
+
+features:
+  window_size: 32       # ~2 seconds @ 15 FPS
+  stride: 8            # ~0.5 seconds overlap
+  min_confidence: 0.3   # Keypoint visibility threshold
+  keypoints_dir: data/keypoints
+  output_dir: data/features
+
+model:
+  model_type: gru       # Options: gru, lstm, baseline
+  input_dim: 77         # Total features per frame (34 xy + 17 c + 6 angles + 16 spatial + 4 kinematics)
+  hidden_dim: 64
+
+  num_layers: 2
+  dropout: 0.2
+  learning_rate: 0.001
+  batch_size: 32
+  epochs: 30
+  pos_weight: 2.0       # Weight for shoplifting positive class
+  artifacts_dir: artifacts/models
+
