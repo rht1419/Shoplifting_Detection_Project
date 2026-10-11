@@ -1,16 +1,16 @@
-# Large or sensitive data and generated ML artifacts
+# Exclude large raw datasets and video files
 data/external/
 data/raw/
 data/keypoints/
 data/features/
 data/normal/
 data/shoplifting/
-artifacts/
 *.onnx
-*.pt
-*.pth
 *.mp4
 *.avi
+
+# Keep YOLO download out, but allow trained lightweight model weights in artifacts/models
+yolov8n-pose.pt
 
 # Downloaded dataset archives (see Dataset policy in README.md)
 UCF_Crimes-Train-Test-Split.zip
